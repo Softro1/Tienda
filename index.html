@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BlueStore</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  font-family:"Segoe UI", sans-serif;
+}
+
+html, body{
+  margin:0;
+  width:100%;
+  height:100%;
+}
+
+body{
+  background:#e3f2fd;
+}
+
+/* APP */
+.app{
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  background:white;
+  animation:fadeIn .6s ease;
+}
+
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+
+/* HEADER */
+header{
+  background:linear-gradient(135deg,#1976d2,#42a5f5);
+  color:white;
+  padding:16px;
+  text-align:center;
+  font-size:20px;
+  font-weight:bold;
+  box-shadow:0 4px 12px rgba(0,0,0,.2);
+}
+
+/* SEARCH */
+.search{
+  padding:12px;
+  background:#f5faff;
+}
+
+.search input{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:26px;
+  background:#e3f2fd;
+  font-size:15px;
+}
+
+/* GRID */
+.apps{
+  flex:1;
+  padding:14px;
+  display:grid;
+  grid-template-columns:repeat(2, 1fr);
+  gap:14px;
+  overflow-y:auto;
+  background:#f5faff;
+}
+
+/* APP CARD */
+.app-card{
+  background:white;
+  border-radius:26px;
+  padding:14px;
+  text-align:center;
+  box-shadow:0 6px 14px rgba(25,118,210,.15);
+  animation:pop .4s ease;
+}
+
+@keyframes pop{
+  from{transform:scale(.9);opacity:0}
+  to{transform:scale(1);opacity:1}
+}
+
+.app-card img{
+  width:64px;
+  height:64px;
+  border-radius:16px;
+  margin-bottom:8px;
+}
+
+.app-card h3{
+  font-size:14px;
+  margin:6px 0 4px;
+}
+
+.app-card p{
+  font-size:12px;
+  color:#555;
+  margin:0 0 8px;
+}
+
+.app-card button{
+  padding:8px 14px;
+  border:none;
+  border-radius:20px;
+  background:#1976d2;
+  color:white;
+  font-weight:bold;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.app-card button:active{
+  transform:scale(.9);
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<header>🛍️ BlueStore</header>
+
+<div class="search">
+  <input id="search" placeholder="Buscar aplicaciones...">
+</div>
+
+<div class="apps" id="apps">
+  <!-- APP -->
+  <div class="app-card">
+    <img src="https://via.placeholder.com/64">
+    <h3>Chat Azul</h3>
+    <p>Mensajería</p>
+    <button>Instalar</button>
+  </div>
+
+  <div class="app-card">
+    <img src="https://via.placeholder.com/64">
+    <h3>Music Pro</h3>
+    <p>Música</p>
+    <button>Instalar</button>
+  </div>
+
+  <div class="app-card">
+    <img src="https://via.placeholder.com/64">
+    <h3>VideoPlay</h3>
+    <p>Entretenimiento</p>
+    <button>Instalar</button>
+  </div>
+
+  <div class="app-card">
+    <img src="https://via.placeholder.com/64">
+    <h3>Notas+</h3>
+    <p>Productividad</p>
+    <button>Instalar</button>
+  </div>
+</div>
+
+</div>
+
+<script>
+const search = document.getElementById("search");
+const apps = document.getElementById("apps");
+
+search.addEventListener("input", () => {
+  const text = search.value.toLowerCase();
+  document.querySelectorAll(".app-card").forEach(card => {
+    const name = card.querySelector("h3").textContent.toLowerCase();
+    card.style.display = name.includes(text) ? "block" : "none";
+  });
+});
+</script>
+
+</body>
+</html>
